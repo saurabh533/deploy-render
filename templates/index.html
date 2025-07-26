@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UC4 Jobs Smart Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>UC4 Jobs Smart Assistant</h1>
+    <form method="POST">
+        <label for="query">Enter your question:</label><br>
+        <input type="text" id="query" name="query" required><br><br>
+        <button type="submit">Ask</button>
+    </form>
+
+    {% if answer %}
+        <h3>Answer:</h3>
+        <p>{{ answer }}</p>
+    {% endif %}
+</body>
+</html>
