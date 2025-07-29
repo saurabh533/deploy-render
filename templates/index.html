@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Intern Assistant</title>
+</head>
+<body style="
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('{{ url_for('static', filename='logo.jpg') }}') no-repeat center center fixed;
+    background-size: cover;
+">
+
+<!-- Chat UI Container -->
+<div style="
+    background-color: rgba(102, 152, 150, 0);
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 720px;
+    box-shadow: 0 8px 30px rgb(245, 242, 242);
+    backdrop-filter: blur(15px);
+    display: flex;
+    flex-direction: column;
+    height: 85vh;
+">
+
+    <!-- Header -->
+    <div style="text-align: center; margin-bottom: 20px;">
+    <h2 style="
+        margin: 0;
+        font-size: 1.8rem;
+        background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    ">
+        Saurabh's AI Assistant
+    </h2>
+</div>
+{% if answer %}
+    <div style="
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 20px;
+        border-radius: 12px;
+        border-left: 5px solid #80c1ff;
+        font-size: 1.05em;
+        line-height: 1.6;
+        color: #151515;
+        margin-top: 20px;
+    ">
+        <strong>Your Response is Ready </strong>
+        <p style="margin-top: 10px;">{{ answer }}</p>
+
+        <!-- 👇 Image shown right after answer -->
+        <!-- <img 
+            src="{{ url_for('static', filename='great.jpg') }}" 
+            alt="Related Image"
+            style="margin-top: 15px; max-width: 100%; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);"
+        > -->
+    </div>
+{% endif %}
+    <!-- Chat History
+    <div id="chat-box" style="
+        flex: 1;
+        overflow-y: auto;
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        background: rgba(255,255,255,0.05);
+    ">
+        {% if chat_history %}
+            {% for msg in chat_history %}
+                {% if msg.role == 'user' %}
+                    <div style="
+                        background: #585a5b;
+                        color: rgb(163, 155, 155);
+                        padding: 10px 15px;
+                        border-radius: 15px;
+                        max-width: 75%;
+                        margin: 10px 0 10px auto;
+                        text-align: right;
+                        word-wrap: break-word;
+                    ">{{ msg.content }}</div>
+                {% else %}
+                    <div style="
+                        background: #8b9eae;
+                        color: #002b5c;
+                        padding: 10px 15px;
+                        border-radius: 15px;
+                        max-width: 75%;
+                        margin: 10px 0 10px 0;
+                        text-align: left;
+                        word-wrap: break-word;
+                    ">{{ msg.content }}</div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div> -->
+
+    <!-- User Input Form -->
+    <form method="POST" style="display: flex; gap: 10px;">
+        <input
+            type="text"
+            name="query"
+            placeholder="Type your question..."
+            required
+            style="
+                flex: 1;
+                padding: 12px;
+                border-radius: 10px;
+                border: none;
+                font-size: 1rem;
+                box-shadow: inset 0 0 4px rgba(0,0,0,0.3);
+            ">
+        <button type="submit" style="
+            padding: 12px 20px;
+            background-color: #004080;
+            color: white;
+            font-size: 1rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        "
+        onmouseover="this.style.backgroundColor='#0059b3'"
+        onmouseout="this.style.backgroundColor='#004080'">Send</button>
+    </form>
+</div>
+
+<!-- Auto-scroll to bottom -->
+<script>
+    const chatBox = document.getElementById('chat-box');
+    chatBox.scrollTop = chatBox.scrollHeight;
+</script>
+
+</body>
+</html>
